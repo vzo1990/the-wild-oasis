@@ -1,6 +1,7 @@
 # The Wild Oasis
 
 Demo: https://wildoasis-app.vercel.app/dashboard
+User: demo@example.com / 123456789
 
 The Wild Oasis an internal hotel management application that allows hotel employees to manage cabins, bookings, and guests.
 
