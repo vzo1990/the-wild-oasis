@@ -3,20 +3,20 @@
 Demo: https://wildoasis-app.vercel.app/dashboard
 User: demo@example.com / 123456789
 
-The Wild Oasis an internal hotel management application that allows hotel employees to manage cabins, bookings, and guests.
+The Wild Oasis is an internal hotel management application that allows hotel employees to manage cabins, bookings, and guests.
 
-The app uses Supabase for its backend and implements a variety of React techniques, such as Compound Component Pattern, React Query.
+The app uses Supabase for its backend and implements a variety of React techniques, such as Compound Component Pattern, and React Query.
 
 **Technologies & Libraries:**
 
 - React Query
 - React Router
 - React Icons
-- React Hook Form - for form submition and validation
+- React Hook Form - for form submission and validation
 - React Hot Toast - for displaying onSuccess/onError toast messages
 - React Error Boundary - to render fallback UI in case of runtime errors and prevent crashing the entire application
-- Supabase - a back-end solution used as database, auth, and storage
-- Recharts - to integrate charts into React application
+- Supabase - a back-end solution used as a database, auth, and storage
+- Recharts - to integrate charts into the React application
 - date-fns - date utility library for parsing, formatting, and manipulating dates
 - Vite
 
@@ -24,7 +24,7 @@ The app uses Supabase for its backend and implements a variety of React techniqu
 
 1. **User Authentication & Authorization and Signup:**
 
-   - Only authenticated users can have an access to views and perform CRUD operations in application
+   - Only authenticated users can have access to views and perform CRUD operations in the application
    - Hotel employees can log in to the application to perform tasks.
    - New users can only be signed up within the application to ensure that only actual hotel employees can create accounts.
 
@@ -37,7 +37,7 @@ The app uses Supabase for its backend and implements a variety of React techniqu
 
    - The app provides a table view with all cabins.
    - The table view displays cabin information, including cabin photo, name, capacity, price, and current discount.
-   - Users can update, duplicate or delete existing cabins.
+   - Users can update, duplicate, or delete existing cabins.
    - Users can create new cabins, including the ability to upload a photo.
 
 4. **Booking Management:**
@@ -51,7 +51,7 @@ The app uses Supabase for its backend and implements a variety of React techniqu
 
    - Users can delete, check-in, or check out a booking as the guest arrives.
    - On check-in, users can accept payment outside the app and then confirm the payment within the app.
-   - Guests can add breakfast for the entire stay during check-in if they hadn't already.
+   - Guests can add breakfast for the entire stay during check-in if they haven't already.
 
 6. **Guest Data Management:**
 
