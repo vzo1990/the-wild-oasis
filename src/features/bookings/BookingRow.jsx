@@ -70,74 +70,75 @@ function BookingRow({
     "checked-out": "silver",
   };
 
+  const viewBooking = () => navigate(`/bookings/${id}`);
+
   return (
-    <Table.Row>
-      <Cabin>{cabinName}</Cabin>
+    <div>
+      <Table.Row onDoubleClick={viewBooking}>
+        <Cabin>{cabinName}</Cabin>
 
-      <Stacked>
-        <span>{guestName}</span>
-        <span>{email}</span>
-      </Stacked>
+        <Stacked>
+          <span>{guestName}</span>
+          <span>{email}</span>
+        </Stacked>
 
-      <Stacked>
-        <span>
-          {isToday(new Date(startDate))
-            ? "Today"
-            : formatDistanceFromNow(startDate)}{" "}
-          &rarr; {numNights} night stay
-        </span>
-        <span>
-          {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
-          {format(new Date(endDate), "MMM dd yyyy")}
-        </span>
-      </Stacked>
+        <Stacked>
+          <span>
+            {isToday(new Date(startDate))
+              ? "Today"
+              : formatDistanceFromNow(startDate)}{" "}
+            &rarr; {numNights} night stay
+          </span>
+          <span>
+            {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
+            {format(new Date(endDate), "MMM dd yyyy")}
+          </span>
+        </Stacked>
 
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+        <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
-      <Amount>{formatCurrency(totalPrice)}</Amount>
+        <Amount>{formatCurrency(totalPrice)}</Amount>
 
-      <Modal>
-        <Menus.Menu>
-          <Menus.Toggle id={id} />
-          <Menus.List id={id}>
-            <Menus.Button
-              icon={<HiEye />}
-              onClick={() => navigate(`/bookings/${id}`)}
-            >
-              See details
-            </Menus.Button>
-            {status === "unconfirmed" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                onClick={() => navigate(`/checkin/${id}`)}
-              >
-                Checkin
+        <Modal>
+          <Menus.Menu>
+            <Menus.Toggle id={id} />
+            <Menus.List id={id}>
+              <Menus.Button icon={<HiEye />} onClick={viewBooking}>
+                See details
               </Menus.Button>
-            )}
+              {status === "unconfirmed" && (
+                <Menus.Button
+                  icon={<HiArrowDownOnSquare />}
+                  onClick={() => navigate(`/checkin/${id}`)}
+                >
+                  Checkin
+                </Menus.Button>
+              )}
 
-            {status === "checked-in" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                onClick={() => checkout(id)}
-              >
-                Checkout
-              </Menus.Button>
-            )}
-            <Modal.Open name="deleteBooking">
-              <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
-            </Modal.Open>
-          </Menus.List>
-        </Menus.Menu>
+              {status === "checked-in" && (
+                <Menus.Button
+                  icon={<HiArrowUpOnSquare />}
+                  onClick={() => checkout(id)}
+                >
+                  Checkout
+                </Menus.Button>
+              )}
+              <Modal.Open name="deleteBooking">
+                <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+              </Modal.Open>
+            </Menus.List>
+          </Menus.Menu>
 
-        <Modal.Content name="deleteBooking">
-          <ConfirmDelete
-            resourceName="booking"
-            onConfirm={() => deleteBooking(id)}
-            disabled={isDeletingBooking}
-          ></ConfirmDelete>
-        </Modal.Content>
-      </Modal>
-    </Table.Row>
+          <Modal.Content name="deleteBooking">
+            <ConfirmDelete
+              resourceName="booking"
+              onConfirm={() => deleteBooking(id)}
+              disabled={isDeletingBooking}
+            ></ConfirmDelete>
+          </Modal.Content>
+        </Modal>
+      </Table.Row>
+    </div>
   );
 }
 

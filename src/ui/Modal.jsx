@@ -68,9 +68,9 @@ function Modal({ children }) {
   );
 }
 
-function Open({ children, name }) {
+function Open({ children, name, onAction = "onClick" }) {
   const { open } = useContext(ModalContext);
-  return cloneElement(children, { onClick: () => open(name) });
+  return cloneElement(children, { [onAction]: () => open(name) });
 }
 
 function Content({ children, name }) {
