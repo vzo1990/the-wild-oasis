@@ -33,6 +33,9 @@ const StyledList = styled.ul`
   position: absolute;
   z-index: 100;
 
+  display: flex;
+  flex-direction: column;
+
   background-color: var(--color-grey-0);
   box-shadow: var(--shadow-md);
   border-radius: var(--border-radius-md);
@@ -42,7 +45,6 @@ const StyledList = styled.ul`
 `;
 
 const StyledButton = styled.button`
-  width: max-content;
   text-align: left;
   background: none;
   border: none;
@@ -64,6 +66,10 @@ const StyledButton = styled.button`
     color: var(--color-grey-400);
     transition: all 0.3s;
   }
+`;
+
+const StyledButtonName = styled.span`
+  width: max-content;
 `;
 
 const MenusContext = createContext();
@@ -116,7 +122,7 @@ function Button({ children, icon, onClick }) {
   return (
     <StyledButton onClick={handleClick}>
       {icon}
-      <span>{children}</span>
+      <StyledButtonName>{children}</StyledButtonName>
     </StyledButton>
   );
 }
