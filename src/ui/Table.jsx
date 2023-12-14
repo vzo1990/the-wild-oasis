@@ -78,10 +78,10 @@ function Header({ children }) {
   );
 }
 
-function Row({ children }) {
+function Row({ onDoubleClick, children }) {
   const { columns } = useContext(TableContext);
   return (
-    <StyledRow $columns={columns} role="row">
+    <StyledRow $columns={columns} role="row" onDoubleClick={onDoubleClick}>
       {children}
     </StyledRow>
   );
