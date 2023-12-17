@@ -40,7 +40,9 @@ export default function Filter({ filterName, options }) {
   const currentFilter = urlParams.get(filterName) || options[0].value;
 
   function handleClick(value) {
-    setUrlParams({ [filterName]: value });
+    urlParams.delete("page");
+    urlParams.set(filterName, value);
+    setUrlParams(urlParams);
   }
 
   return (

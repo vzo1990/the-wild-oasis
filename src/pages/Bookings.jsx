@@ -2,6 +2,7 @@ import BookingTable from "../features/bookings/BookingTable";
 import Filter from "../ui/Filter";
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
+import Search from "../ui/Search";
 import SortBy from "../ui/SortBy";
 import TableOperations from "../ui/TableOperations";
 
@@ -11,6 +12,7 @@ function Bookings() {
       <Row type="horizontal">
         <Heading as="h1">Bookings</Heading>
         <TableOperations>
+          <Search placeholder="Cabin or Guest..." />
           <Filter
             filterName="status"
             options={[
