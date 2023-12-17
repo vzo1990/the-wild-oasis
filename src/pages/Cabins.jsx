@@ -6,6 +6,7 @@ import AddCabinButton from "../features/cabins/AddCabinButton";
 import Filter from "../ui/Filter";
 import SortBy from "../ui/SortBy";
 import TableOperations from "../ui/TableOperations";
+import Search from "../ui/Search";
 
 function Cabins() {
   return (
@@ -13,6 +14,7 @@ function Cabins() {
       <Row type="horizontal">
         <Heading as="h1">Cabins</Heading>
         <TableOperations>
+          <Search placeholder="Cabin..." />
           <Filter
             filterName="discount"
             options={[

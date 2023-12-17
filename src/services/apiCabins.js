@@ -1,7 +1,11 @@
 import { supabase, supabaseUrl } from "./supabase";
 
-export async function getCabins() {
-  const { data, error } = await supabase.from("cabins").select("*");
+export async function getCabins({ search }) {
+  let query = supabase.from("cabins").select("*");
+
+  if (search?.length > 0) query = query.like("name", `%${search}%`);
+
+  const { data, error } = await query;
 
   if (error) {
     console.error(error.message);

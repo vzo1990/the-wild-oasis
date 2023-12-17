@@ -2,13 +2,14 @@ import { ITEMS_PER_PAGE } from "../utils/constants";
 import { getToday } from "../utils/helpers";
 import { supabase } from "./supabase";
 
-export async function getBookings({ filter, sort, page }) {
-  let query = supabase
-    .from("bookings")
-    .select("*, cabins(name), guests(fullName, email)", { count: "exact" });
+export async function getBookings({ filter, sort, page, search }) {
+  let query = supabase.from("bookings_view").select("*", { count: "exact" });
 
   if (filter.name && filter.value && filter.value !== "all")
     query = query.eq(filter.name, filter.value);
+
+  if (search?.length > 0)
+    query = query.or(`fullName.like.%${search}%,name.like.%${search}%`);
 
   if (sort.field && sort.direction)
     query = query.order(sort.field, { ascending: sort.direction === "asc" });

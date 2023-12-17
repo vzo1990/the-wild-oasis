@@ -8,6 +8,7 @@ export default function useBookings() {
   const queryClient = useQueryClient();
 
   const filterValue = urlParams.get("status") || "all";
+  const search = urlParams.get("search") || "";
 
   const sortValue = urlParams.get("sort") || "startDate-desc";
   const [sortField, sortDirection] = sortValue.split("-");
@@ -16,12 +17,13 @@ export default function useBookings() {
 
   // fetching current page
   const { data: { bookings, count } = {}, isLoading } = useQuery({
-    queryKey: ["bookings", filterValue, sortValue, page],
+    queryKey: ["bookings", filterValue, sortValue, page, search],
     queryFn: () =>
       getBookings({
         filter: { name: "status", value: filterValue },
         sort: { field: sortField, direction: sortDirection },
         page,
+        search,
       }),
   });
 
@@ -30,23 +32,25 @@ export default function useBookings() {
   // prefetching
   if (page < totalPages)
     queryClient.prefetchQuery({
-      queryKey: ["bookings", filterValue, sortValue, page + 1],
+      queryKey: ["bookings", filterValue, sortValue, page + 1, search],
       queryFn: () =>
         getBookings({
           filter: { name: "status", value: filterValue },
           sort: { field: sortField, direction: sortDirection },
           page: page + 1,
+          search,
         }),
     });
 
   if (page > 1)
     queryClient.prefetchQuery({
-      queryKey: ["bookings", filterValue, sortValue, page - 1],
+      queryKey: ["bookings", filterValue, sortValue, page - 1, search],
       queryFn: () =>
         getBookings({
           filter: { name: "status", value: filterValue },
           sort: { field: sortField, direction: sortDirection },
           page: page - 1,
+          search,
         }),
     });
 
